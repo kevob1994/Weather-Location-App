@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './styles.css';
 
 export default class Location extends Component {
 	constructor(props) {
@@ -9,7 +10,7 @@ export default class Location extends Component {
 	render() {
 		const { city } = this.props;
 		return (
-			<div>
+			<div className="locationCont">
 				<h1>{city}</h1>
 			</div>
 		);
