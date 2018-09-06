@@ -9,17 +9,6 @@ export default class WeatherTemperature extends Component {
 		super(props);
 	}
 
-	render() {
-		let { temperature } = this.props;
-		let { weatherState } = this.props;
-		return (
-			<div className="weatherTemperatureCont">
-				{this.getWeatherIcon(weatherState)}
-				<span>{` ${temperature} C°`}</span>
-			</div>
-		);
-	}
-
 	stateToIconName = (weatherState) => {
 		switch (weatherState) {
 			case CLOUD:
@@ -40,8 +29,20 @@ export default class WeatherTemperature extends Component {
 	};
 
 	getWeatherIcon = (weatherState) => {
-		return <WeatherIcons name={this.stateToIconName(weatherState)} size="2x" />;
+		return <WeatherIcons className="wicon" name={this.stateToIconName(weatherState)} size="4x" />;
 	};
+
+	render() {
+		let { temperature } = this.props;
+		let { weatherState } = this.props;
+		return (
+			<div className="weatherTemperatureCont">
+				{this.getWeatherIcon(weatherState)}
+				<span className="temperature">{` ${temperature} `}</span>
+				<span className="grade">C°</span>
+			</div>
+		);
+	}
 }
 
 WeatherTemperature.propTypes = {
