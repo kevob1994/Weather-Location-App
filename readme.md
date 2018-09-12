@@ -4,6 +4,7 @@ El fin de este proyecto es aprender y reforzar mis conocimientos de programació
 
  ## Tecnologías usadas:
   - React.js
+  - Redux
   - Node.js
   - ES6
   - Babel
