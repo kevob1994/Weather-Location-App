@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import WeatherLocation from './components/WeatherLocation';
+import LocationList from './components/LocationList';
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 
 class App extends Component {
 	render() {
 		return (
-			<div className="App">
-				<WeatherLocation />
-			</div>
+			<MuiThemeProvider>
+				<div className="App">
+					<LocationList />
+				</div>
+			</MuiThemeProvider>
 		);
 	}
 }
