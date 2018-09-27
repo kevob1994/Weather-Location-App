@@ -26,3 +26,22 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.detail {
+  background: rgb(47, 47, 47);
+  height: 100vh;
+  width: 100%;
+  margin-top: 5px !important;
+}
+
+.MuiAppBar-positionFixed-02 {
+  position: static !important;
+}
+
+.MuiAppBar-root-01 {
+  display: block !important;
+}
+
+@media (max-width: 62em) {
+  
+}
