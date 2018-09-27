@@ -23,10 +23,10 @@ export default class WeatherLocation extends Component {
 			data: null,
 		};
 
-		console.log("constructor");
+		// console.log("constructor");
 	}
 
-	handleUpdateClick = () => {
+	updateData = () => {
 		const { city } = this.state
 		const api_weather = `${url}?q=${city}&appid=${api_key}`;
 		fetch(api_weather).then(data => {
@@ -39,39 +39,42 @@ export default class WeatherLocation extends Component {
 
 	//se ejecuta al iniciar la renderización del component
 	componentWillMount = () => {
-	  console.log("componentWillMount");
+	//   console.log("componentWillMount");
 
-	  this.handleUpdateClick();
+	  this.updateData();
 	  
 	}
 
 	//se ejecuta al finalizar la renderización del component
-	componentDidMount = () => {
-		console.log("componentDidMount");
-	}
+	// componentDidMount = () => {
+	// 	console.log("componentDidMount");
+	// }
 
 	//se ejecuta cada vez que el dom se actualiza
-	componentWillUpdate = () => {
-		console.log("componentWillUpdate");
-	}
+	// componentWillUpdate = () => {
+	// 	console.log("componentWillUpdate");
+	// }
 
 	//se ejecuta cada vez que el dom termina de actualizarce
-	componentDidUpdate = () => {
-		console.log("componentWillUpdate");
-	}
+	// componentDidUpdate = () => {
+	// 	console.log("componentWillUpdate");
+	// }
+	
 	render = () => {
-		console.log("render");
+
+		const { onWeatherLocationClick } = this.props;
 		const { city, data } = this.state;
 		return (
-			<div className="weatherLocationCont">
+			<div className="weatherLocationCont" onClick={onWeatherLocationClick}>
 				<Location city={city} />
 				{ data ? <WeatherData data={data} /> : <CircularProgress  style={{ color: cyan[500] }} thickness={7} />}
-				{ /*<button onClick={this.handleUpdateClick}>Actualizar</button> */}
+			
 			</div>
 		);
 	}
 }
 
 WeatherLocation.propTypes = {
-	city: PropTypes.string.isRequired
+	city: PropTypes.string.isRequired,
+	onWeatherLocationClick: PropTypes.func,
 }
