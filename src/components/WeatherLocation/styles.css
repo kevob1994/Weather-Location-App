@@ -1,9 +1,12 @@
 .weatherLocationCont {
-	margin: 30px;
+	
+	margin: 0 auto;
+	margin-top: 5px;
+	margin-bottom: 20px;
 	width: 400px;
 	padding: 15px;
 	font-family: 'Righteous', cursive;
-	box-shadow: 6px 19px 60px -12px rgba(0, 0, 0, 0.54);
+	box-shadow: 6px 19px 20px -12px rgba(0, 0, 0, 0.54);
 }
 
 .locationCont {
@@ -16,3 +19,4 @@
 	margin-bottom: 0px;
 	line-height: 5px;
 }
+
