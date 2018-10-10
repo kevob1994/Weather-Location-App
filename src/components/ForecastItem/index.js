@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import WeatherData from './../WeatherLocation/WeatherData'
-
+import './styles.css'
 
 export default class ForecastItem extends Component {
 
@@ -25,7 +25,7 @@ export default class ForecastItem extends Component {
 
         return(
             <div>
-            <div>{weekDay} Hora: {hour} hs</div>
+            <h2>{weekDay} - {hour} hs</h2>
             <WeatherData data= {data} />
             </div>
         )
