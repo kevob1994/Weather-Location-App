@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import './styles.css';
 import ForecastItem from './ForecastItem';
+import transformForecast from './../services/trasnformForecast'
 
 // const days = [
 //     'Lunes',
@@ -32,43 +33,56 @@ export default class ForecastExtended extends Component {
     }
 
     componentDidMount() {
-        const { city } = this.state
+        this.updateCity(this.state.city);
+    }
+
+    updateCity = city => {
+        console.log(city,"HOLA")
 		const api_forecast = `${url}?q=${city}&appid=${api_key}`;
         fetch(api_forecast).then(data => {
 			return data.json();
 		}).then( weather_data => {
-			console.log(weather_data)
+            // console.log(weather_data)
+            const forecastData = transformForecast(weather_data);
+            // console.log("forecastData",forecastData)
+            this.setState({ forecastData })
 		});
     }
 
     componentWillReceiveProps(nextProps){
         if(nextProps.city !== this.props.city){
             this.setState({city:nextProps.city});
+            this.updateCity(nextProps.city);
         }
     }
 
-    renderForecastItemsDays = () => {
+    renderForecastItemsDays = (forecastData) => {
         return( 
-            // days.map((day) => (<ForecastItem  weekDay={day} hour={10} data= {data}/>))
-            "Render Items"
+            forecastData.map((forecast) => (
+                <ForecastItem
+                    key={`${forecast.weekDay}${forecast.hour}`}
+                    weekDay={forecast.weekDay} 
+                    hour={forecast.hour} 
+                    data= {forecast.data}
+                />))
             )
     }
 
     renderProgress = () => {
-        return "Cargando pronostico extendido"
+        return <p>Cargando pronostico extendido</p>
     }
 
     render() {
         
-        const { city } = this.props
-        const { forecastData } = this.props
+        const { city } = this.state
+        const { forecastData } = this.state
         return (
             <div>
-               <h2 className="forecast-title">Pronóstico Extendido para {city}</h2> 
-                {forecastData ?
-                    this.renderForecastItemsDays() :
-                    this.renderProgress()
-                }
+               <h2 className="forecast-title" >Pronóstico Extendido para {city}</h2> 
+               {forecastData ? 
+                    this.renderForecastItemsDays(forecastData) :
+                    this.renderProgress()     
+                }         
             </div>
         )
   }
