@@ -17,6 +17,16 @@ export default class ForecastItem extends Component {
     componentWillReceiveProps(nextProps){
         if(nextProps.city !== this.props.city){
             this.setState({city:nextProps.city});
+            
+        }
+        if(nextProps.weekDay !== this.props.weekDay ||
+            nextProps.hour !== this.props.hour ||
+            nextProps.data !== this.props.data ){
+            this.setState({
+                weekDay:nextProps.weekDay,
+                hour:nextProps.hour,
+                data:nextProps.data
+            });
         }
     }
 
